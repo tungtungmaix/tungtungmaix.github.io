@@ -1,12 +1,92 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Chuyển hướng trang</title>
-    <meta http-equiv="refresh" content="0;url=https://linktr.ee/tungtungmaix">
+    <title>Trang Landing Page</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            background: url('path-to-your-space-background-image.jpg') center/cover no-repeat;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            font-family: 'Arial', sans-serif;
+            color: #000;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        h1, p, .redirect-message {
+            color: #000;
+            text-shadow: 2px 2px 4px rgba(255, 255, 255, 0.7);
+        }
+
+        .progressbar-container {
+            width: 100%;
+            height: 10px;
+            background: rgba(255, 255, 255, 0.3);
+            margin-bottom: 20px;
+            overflow: hidden;
+            border-radius: 5px;
+        }
+
+        .progressbar {
+            width: 0;
+            height: 100%;
+            background: #4CAF50;
+            transition: width 3s;
+            border-radius: 5px;
+        }
+
+        .redirect-message {
+            opacity: 0;
+            transform: translateY(-20px);
+            transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
+        }
+    </style>
+    <meta http-equiv="refresh" content="5.5;url=https://linktr.ee/tungtungmaix">
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const redirectMessage = document.querySelector('.redirect-message');
+            const progressBar = document.querySelector('.progressbar');
+
+            setTimeout(() => {
+                redirectMessage.style.opacity = '1';
+                redirectMessage.style.transform = 'translateY(0)';
+            }, 500);
+
+            let progress = 0;
+            const interval = setInterval(() => {
+                progress += 1;
+                progressBar.style.width = progress + '%';
+
+                if (progress >= 100) {
+                    clearInterval(interval);
+                    redirectMessage.textContent = 'Đã tới nơi, vui lòng mang theo hành lý để rời khỏi máy bay.';
+                }
+            }, 30);
+        });
+    </script>
 </head>
+
 <body>
-    <p>Nếu trình duyệt không tự động chuyển hướng, vui lòng <a href="http://123.con">nhấn vào đây</a>.</p>
+    <header>
+        <h1>Trạm tàu vũ trụ TungTungMai</h1>
+        <p>Hãy ngồi yên, máy bay đang cất cánh tới địa điểm tiếp theo là trang web của TungTungMai...</p>
+    </header>
+    <div class="progressbar-container">
+        <div class="progressbar"></div>
+    </div>
+    <p class="redirect-message">Đang cất cánh...</p>
 </body>
+
 </html>
